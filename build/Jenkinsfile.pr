@@ -28,6 +28,7 @@ pipeline {
                 }
                 cleanWs notFailBuild: true
                 sh """
+                    go version
                     mkdir -p src/github.com/mattermost/mattermost-server
                     mkdir -p src/github.com/mattermost/mattermost-webapp
                     mkdir -p src/github.com/mattermost/enterprise
