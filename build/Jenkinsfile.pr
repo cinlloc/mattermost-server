@@ -100,6 +100,7 @@ pipeline {
                 withDockerContainer(args: '-u root --privileged -v ${WORKSPACE}/src:/go/src/', image: 'mattermost/mattermost-build-server:feb-28-2019') {
                     ansiColor('xterm') {
                         sh """
+                            go version
                             cd /go/src/github.com/mattermost/mattermost-server
                             make config-reset
                             make check-style BUILD_NUMBER='${BRANCH_NAME}-${BUILD_NUMBER}'
@@ -253,6 +254,7 @@ pipeline {
                 withDockerContainer(args: "-u root --privileged --net ${COMPOSE_PROJECT_NAME}_mm-test -v ${WORKSPACE}/src:/go/src/", image: 'mattermost/mattermost-build-server:feb-28-2019') {
                     ansiColor('xterm') {
                         sh """
+                            go version
                             cd /go/src/github.com/mattermost/mattermost-server
 
                             mkdir -p client/plugins
